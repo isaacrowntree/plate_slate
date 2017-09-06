@@ -1,6 +1,7 @@
 defmodule PlateSlateWeb.Schema do
   use Absinthe.Schema
-  # Absinthe.Schema.Notation
+
+  import_types __MODULE__.MenuTypes
 
   alias PlateSlateWeb.Resolvers
 
@@ -12,36 +13,28 @@ defmodule PlateSlateWeb.Schema do
     end
   end
 
+  mutation do
+    field :place_order, :order do
+
+    end
+  end
+
+  object :order do
+
+  end
+
   enum :sort_order do
     value :asc
     value :desc
   end
 
-  input_object :menu_items_filter do
-    field :matching, :string
-    field :priced_above, :decimal
-    field :priced_below, :decimal
-  end
-
   scalar :decimal do
-    parse fn input ->
-      input.value |> Decimal.parse
+    parse fn
+      %{value: value}, _ ->
+        Decimal.parse(value)
+      _, _ ->
+        :error
     end
-
-    serialize fn value ->
-      to_string(value)
-    end
-  end
-
-  @desc """
-    Something to eat off the menu
-  """
-
-  object :menu_item do
-    field :id, :id
-    @desc "Its name"
-    field :name, :string
-    field :description, :string
-    field :price, :decimal
+    serialize &to_string/1
   end
 end
