@@ -14,6 +14,8 @@ defmodule PlateSlateWeb.Schema do
             Menu.Item
             |> where([item], ilike(item.name, ^"%#{term}%"))
           {:ok, Repo.all(query)}
+        _, _, _ ->
+          {:ok, Repo.all(Menu.Item)}
       end
     end
   end
