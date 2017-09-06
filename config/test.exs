@@ -16,4 +16,5 @@ config :plate_slate, PlateSlate.Repo,
   password: "postgres",
   database: "plate_slate_test",
   hostname: "localhost",
+  port: 15432,
   pool: Ecto.Adapters.SQL.Sandbox
