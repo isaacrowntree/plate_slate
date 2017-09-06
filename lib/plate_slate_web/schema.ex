@@ -13,6 +13,18 @@ defmodule PlateSlateWeb.Schema do
 
   input_object :menu_items_filter do
     field :matching, :string
+    field :priced_above, :decimal
+    field :priced_below, :decimal
+  end
+
+  scalar :decimal do
+    parse fn input ->
+      input.value |> Decimal.parse
+    end
+
+    serialize fn value ->
+      to_string(value)
+    end
   end
 
   @desc """
@@ -24,6 +36,6 @@ defmodule PlateSlateWeb.Schema do
     @desc "Its name"
     field :name, :string
     field :description, :string
-    field :price, :float
+    field :price, :decimal
   end
 end
