@@ -1,5 +1,9 @@
 # PlateSlate
 
+
+For further READMe info: https://github.com/benwilson512/plate_slate_tutorial
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
