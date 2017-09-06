@@ -6,9 +6,13 @@ defmodule PlateSlateWeb.Schema do
 
   query do
     field :menu_items, list_of(:menu_item) do
-      arg :matching, :string
+      arg :filter, :menu_items_filter
       resolve &Resolvers.Menu.menu_items/3
     end
+  end
+
+  input_object :menu_items_filter do
+    field :matching, :string
   end
 
   @desc """
